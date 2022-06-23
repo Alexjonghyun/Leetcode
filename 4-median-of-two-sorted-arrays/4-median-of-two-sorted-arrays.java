@@ -2,8 +2,8 @@ import java.util.*;
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int n = nums1.length + nums2.length;
-        boolean odd = false;
-        if(n%2==1) odd=true;
+        boolean odd = (n%2==1);
+        
         int a=0;
         int b=0;
         int last = 0;
