@@ -39,14 +39,15 @@ class Solution {
         for (int i = lowestHeight; i < highestHeight+1; i++) {
             
             if(!existHeight[i]) continue;
-            int smallestIdx = map.get(i).peekFirst();
-            int biggestIdx = map.get(i).peekLast();
+            
+            ArrayDeque<Integer> mm = map.get(i);
+            int smallestIdx = mm.peekFirst();
+            int biggestIdx = mm.peekLast();
             scale = Math.max((remainingBiggest - smallestIdx) * i, scale);
 
             scale = Math.max((biggestIdx - remainingSmallest) * i, scale);
 
-            for (int t:
-                    map.get(i)) {
+            for (int t : mm) {
                 usedIdx[t] = true;
             }//이미 쓰인 인덱스는 안씀 - 더 커야지만 로직이 성립하니까
 
