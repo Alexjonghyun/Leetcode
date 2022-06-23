@@ -15,8 +15,7 @@ class Solution {
     }
 }
 //Above is a greedy way
-//Without greedy way, I could make
-
+//Without greedy way, I tried...
 
 /*
 import java.util.*;
