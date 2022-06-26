@@ -1,7 +1,51 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(hm.get(nums[i])==null) hm.put(nums[i], 1);
+            else hm.put(nums[i], hm.get(nums[i])+1);
+        }
+        ArrayList<Integer> setList = new ArrayList<>(hm.keySet());
+        Collections.sort(setList);
+        for (int i=0; i<setList.size(); i++) {
+            int t = setList.get(i);
+            if(hm.get(t)>1 && t!=0) { //t가 두개이상 있음 - t를 두개쓰고 t가 아닌걸 하나 조합해서 0이 되는지 찾기
+                if(hm.get(-2*t)!=null){
+                    List<Integer> tmp = new ArrayList<>();
+                    tmp.add(t);
+                    tmp.add(t);
+                    tmp.add(-2*t);
+                    ans.add(tmp);
+                }
+            }else if(t==0 && hm.get(t)>2){
+                List<Integer> tmp = new ArrayList<>();
+                tmp.add(0);
+                tmp.add(0);
+                tmp.add(0);
+                ans.add(tmp);
+                continue;
+            }
+            //t 하나 쓰고 t아닌거 두개쓰는 조합 구하기
+            for (int j = i+1; j < setList.size(); j++) {
+                int t2 = setList.get(j);
+                if(hm.get(-t-t2)!=null && t2<-t-t2){
+                    List<Integer> tmp = new ArrayList<>();
+                    tmp.add(t);
+                    tmp.add(t2);
+                    tmp.add(-t-t2);
+                    ans.add(tmp);
+                }
+            }
+
+        }
+        return ans;
+    }
+}
+
+/* First Solution
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         if(nums.length<3) return new ArrayList<>();
@@ -50,3 +94,4 @@ class Solution {
         return ans;
     }
 }
+*/
