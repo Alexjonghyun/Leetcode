@@ -35,7 +35,7 @@ class Solution {
             //세 원소가 모두 다른경우를 구하기
             for (int j = i+1; j < setList.size(); j++) {
                 int t2 = setList.get(j); // t!=t2
-                
+                if(t2>0 && t+t2>0) break;
                 if(t2<-t-t2 && hm.get(-t-t2)!=null){
                     List<Integer> tmp = new ArrayList<>(3);
                     tmp.add(t);
